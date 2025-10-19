@@ -1,0 +1,157 @@
+<!-- TabVerse Ultimate - Overlay HTML (injected into Shadow DOM) -->
+<div id="tabverse-root" class="tabverse-hidden">
+  <!-- Optional Background Blur Overlay -->
+  <div id="background-overlay"></div>
+  
+  <!-- Hover trigger for auto-hide control panel -->
+  <div id="control-panel-trigger" class="control-panel-trigger hidden"></div>
+  
+  <!-- Main Workspace Container -->
+  <div id="tabverse-workspace" class="workspace">
+    <!-- Floating Windows Container -->
+    <div id="windows-container" class="windows-container">
+      <!-- Floating windows will be added here dynamically -->
+    </div>
+
+    <!-- Split Panes Container -->
+    <div id="panes-container" class="panes-container">
+      <!-- Split panes will be added here dynamically -->
+    </div>
+  </div>
+
+  <!-- AI Assistant Sidebar -->
+  <div id="ai-sidebar" class="ai-sidebar hidden">
+    <div class="ai-header">
+      <div class="ai-title">
+        <span class="ai-icon">🤖</span>
+        <span>AI Assistant</span>
+      </div>
+      <button id="ai-close" class="ai-close-btn" data-testid="button-close-ai">×</button>
+    </div>
+    
+    <div class="ai-content">
+      <div id="ai-messages" class="ai-messages">
+        <div class="ai-message system">
+          <p>Hi! I can help you summarize this page or answer questions about it.</p>
+          <p class="ai-hint">Try: "Summarize this page" or "What is this about?"</p>
+        </div>
+      </div>
+      
+      <div class="ai-input-container">
+        <input 
+          type="text" 
+          id="ai-input" 
+          placeholder="Ask me anything about this page..."
+          data-testid="input-ai-query"
+        />
+        <button id="ai-send" class="ai-send-btn" data-testid="button-send-ai">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Control Panel / Toolbar -->
+  <div id="control-panel" class="control-panel">
+    <div class="control-group">
+      <button id="add-window-btn" class="control-btn" title="Add Floating Window" data-testid="button-add-window">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+        <span>Window</span>
+      </button>
+      
+      <button id="split-horizontal-btn" class="control-btn" title="Split Horizontal" data-testid="button-split-horizontal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+        </svg>
+        <span>Split H</span>
+      </button>
+      
+      <button id="split-vertical-btn" class="control-btn" title="Split Vertical" data-testid="button-split-vertical">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+          <line x1="12" y1="3" x2="12" y2="21"></line>
+        </svg>
+        <span>Split V</span>
+      </button>
+    </div>
+
+    <div class="control-group">
+      <button id="toggle-ai-btn" class="control-btn" title="AI Assistant" data-testid="button-toggle-ai">
+        <span>🤖</span>
+        <span>AI</span>
+      </button>
+      
+      <button id="widgets-menu-btn" class="control-btn" title="Widgets" data-testid="button-widgets">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Widgets</span>
+      </button>
+      
+      <button id="blur-toggle-btn" class="control-btn" title="Toggle Blur Mode" data-testid="button-blur-toggle">
+        <span>👁️</span>
+        <span>Blur</span>
+      </button>
+      
+      <button id="auto-hide-toggle-btn" class="control-btn" title="Toggle Auto-Hide" data-testid="button-auto-hide-toggle">
+        <span>📌</span>
+        <span>Pin</span>
+      </button>
+      
+      <button id="close-overlay-btn" class="control-btn danger" title="Close Overlay" data-testid="button-close-overlay">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        <span>Close</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Widgets Menu Dropdown -->
+  <div id="widgets-menu" class="widgets-menu hidden">
+    <div class="widget-menu-item" data-widget="clock" data-testid="menu-widget-clock">
+      <span class="widget-icon">🕐</span>
+      <span>Clock</span>
+    </div>
+    <div class="widget-menu-item" data-widget="todo" data-testid="menu-widget-todo">
+      <span class="widget-icon">✓</span>
+      <span>To-Do List</span>
+    </div>
+    <div class="widget-menu-item" data-widget="stats" data-testid="menu-widget-stats">
+      <span class="widget-icon">📊</span>
+      <span>Stats Counter</span>
+    </div>
+  </div>
+
+  <!-- License Upgrade Prompt -->
+  <div id="upgrade-prompt" class="upgrade-prompt hidden">
+    <div class="upgrade-content">
+      <h3>Upgrade to Premium</h3>
+      <p>You've reached the limit for free tier.</p>
+      <ul>
+        <li>✓ Unlimited floating windows</li>
+        <li>✓ Unlimited split panes</li>
+        <li>✓ AI assistant</li>
+        <li>✓ Cross-device sync</li>
+      </ul>
+      <button id="upgrade-btn" class="upgrade-btn" data-testid="button-upgrade">
+        Upgrade - $5/month
+      </button>
+      <button id="close-upgrade-btn" class="close-upgrade-btn" data-testid="button-close-upgrade">
+        Maybe later
+      </button>
+    </div>
+  </div>
+</div>

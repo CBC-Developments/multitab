@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabVerse Ultimate - Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #06b6d4;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 40px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: rgba(6, 182, 212, 0.9);
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .setting-row:last-child {
+      border-bottom: none;
+    }
+
+    .setting-label {
+      flex: 1;
+    }
+
+    .setting-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 4px;
+    }
+
+    .setting-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      padding: 10px 14px;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 14px;
+      outline: none;
+      width: 200px;
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(6, 182, 212, 0.6);
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.2);
+      transition: 0.3s;
+      border-radius: 14px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background: linear-gradient(135deg, #06b6d4 0%, #4f46e5 100%);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #06b6d4 0%, #4f46e5 100%);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .button-danger {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    }
+
+    .license-card {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(79, 70, 229, 0.2) 100%);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .license-tier {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .license-features {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    .license-features li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .license-features li:before {
+      content: "✓ ";
+      color: #06b6d4;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .upgrade-input {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .upgrade-input input {
+      flex: 1;
+    }
+
+    .status-message {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .status-success {
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #86efac;
+    }
+
+    .status-error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+
+    .domain-rules-list {
+      margin-top: 16px;
+    }
+
+    .domain-rule-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .domain-rule-item span {
+      flex: 1;
+      font-size: 14px;
+    }
+
+    .domain-rule-item button {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>TabVerse Ultimate Settings</h1>
+    <p class="subtitle">Configure your multitasking workspace</p>
+
+    <!-- License Section -->
+    <div class="section">
+      <h2 class="section-title">License & Subscription</h2>
+      <div class="license-card">
+        <div class="license-tier" id="current-tier">Free Tier</div>
+        <p id="tier-description">Limited features</p>
+        <ul class="license-features" id="tier-features">
+          <li>3 floating windows</li>
+          <li>1 pane layout</li>
+          <li>Basic widgets</li>
+          <li>Local storage only</li>
+        </ul>
+      </div>
+      
+      <div id="upgrade-section">
+        <p style="margin-bottom: 12px;">Upgrade to Premium for unlimited windows, AI assistant, and cross-device sync.</p>
+        <div class="upgrade-input">
+          <input type="text" id="license-key-input" placeholder="Enter license key (try: TABVERSE-PREMIUM-DEMO)" data-testid="input-license-key" />
+          <button id="verify-license-btn" data-testid="button-verify-license">Verify License</button>
+        </div>
+        <div id="license-status"></div>
+      </div>
+    </div>
+
+    <!-- AI Assistant Settings -->
+    <div class="section">
+      <h2 class="section-title">AI Assistant</h2>
+      
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">Enable AI Assistant</div>
+          <div class="setting-desc">Toggle AI assistant sidebar</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="ai-enabled" checked data-testid="toggle-ai-enabled" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">Use OpenAI API</div>
+          <div class="setting-desc">Connect to OpenAI for advanced responses (Premium only)</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="ai-use-api" data-testid="toggle-ai-api" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">OpenAI API Key</div>
+          <div class="setting-desc">Your OpenAI API key for advanced AI features</div>
+        </div>
+        <input type="text" id="ai-api-key" placeholder="sk-..." data-testid="input-ai-api-key" />
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">Response Style</div>
+          <div class="setting-desc">Choose AI response style</div>
+        </div>
+        <select id="ai-prompt-style" data-testid="select-ai-style">
+          <option value="concise">Concise</option>
+          <option value="detailed">Detailed</option>
+          <option value="casual">Casual</option>
+          <option value="professional">Professional</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Theme Settings -->
+    <div class="section">
+      <h2 class="section-title">Theme Customization</h2>
+      
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">Primary Color</div>
+          <div class="setting-desc">Main interface color</div>
+        </div>
+        <input type="color" id="theme-primary" value="#0f172a" data-testid="input-theme-primary" />
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">Accent Color</div>
+          <div class="setting-desc">Highlight and glow color</div>
+        </div>
+        <input type="color" id="theme-accent" value="#06b6d4" data-testid="input-theme-accent" />
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">Opacity</div>
+          <div class="setting-desc">Window transparency (0.5 - 1.0)</div>
+        </div>
+        <input type="number" id="theme-opacity" min="0.5" max="1" step="0.05" value="0.95" data-testid="input-theme-opacity" />
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <div class="setting-name">Blur Strength</div>
+          <div class="setting-desc">Glassmorphism blur (0 - 20px)</div>
+        </div>
+        <input type="number" id="theme-blur" min="0" max="20" step="1" value="10" data-testid="input-theme-blur" />
+      </div>
+    </div>
+
+    <!-- Domain Rules -->
+    <div class="section">
+      <h2 class="section-title">Domain Rules</h2>
+      <p style="margin-bottom: 16px; color: rgba(255, 255, 255, 0.7);">Configure which widgets automatically open on specific websites</p>
+      
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <input type="text" id="domain-input" placeholder="example.com" style="flex: 1;" data-testid="input-domain" />
+        <button id="add-domain-btn" data-testid="button-add-domain">Add Domain Rule</button>
+      </div>
+
+      <div class="domain-rules-list" id="domain-rules-list">
+        <!-- Domain rules will be listed here -->
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="section">
+      <h2 class="section-title">Data Management</h2>
+      
+      <div style="display: flex; gap: 12px;">
+        <button id="save-settings-btn" data-testid="button-save-settings">Save All Settings</button>
+        <button class="button-secondary" id="export-settings-btn" data-testid="button-export-settings">Export Settings</button>
+        <button class="button-danger" id="reset-settings-btn" data-testid="button-reset-settings">Reset to Defaults</button>
+      </div>
+      
+      <div id="save-status"></div>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

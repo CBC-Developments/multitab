@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabVerse Ultimate</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 350px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #06b6d4;
+    }
+
+    .version {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(79, 70, 229, 0.3) 100%);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 12px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .action-btn:hover {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.5) 0%, rgba(79, 70, 229, 0.5) 100%);
+      box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
+    }
+
+    .icon {
+      font-size: 20px;
+    }
+
+    .stats {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+
+    .stats-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: rgba(6, 182, 212, 0.9);
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .stat-value {
+      font-weight: 600;
+      color: #06b6d4;
+    }
+
+    .footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .footer a {
+      color: rgba(6, 182, 212, 0.8);
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .footer a:hover {
+      color: #06b6d4;
+    }
+  </style>
+</head>
+<body>
+  <h1>TabVerse Ultimate</h1>
+  <p class="version">v3.0.0 | <span id="license-tier">Free</span></p>
+
+  <button class="action-btn" id="toggle-overlay-btn" data-testid="button-toggle-overlay">
+    <span class="icon">🪟</span>
+    <span>Toggle Overlay (Alt+T)</span>
+  </button>
+
+  <button class="action-btn" id="toggle-ai-btn" data-testid="button-toggle-ai-popup">
+    <span class="icon">🤖</span>
+    <span>Toggle AI Assistant (Alt+A)</span>
+  </button>
+
+  <button class="action-btn" id="open-settings-btn" data-testid="button-open-settings">
+    <span class="icon">⚙️</span>
+    <span>Open Settings</span>
+  </button>
+
+  <div class="stats">
+    <div class="stats-title">Current Tab</div>
+    <div class="stat-row">
+      <span>Windows Open:</span>
+      <span class="stat-value" id="windows-count">0</span>
+    </div>
+    <div class="stat-row">
+      <span>Panes Created:</span>
+      <span class="stat-value" id="panes-count">0</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="#" id="upgrade-link" data-testid="link-upgrade">Upgrade to Premium</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
